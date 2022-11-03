@@ -1,20 +1,10 @@
 # 12 SQL: Employee Tracker
-
-## Your Task
-
    
 ## Description
 
 🔍 A node.js application that uses user input from inquirer to populate an employee tracker database displaying members of a company.
 
-![DeWoody Employee Tracker](./assets/title.PNG)
-  
-💻 Below is the gif showing the functionality of the application:
-  
-![DeWoody Employee Tracker](./assets/employee-tracker.gif)
-  
-🎥 The full movie file showing functionality of the application can be found [here](./assets/employee-tracker.webm)  
-  
+
 ## User Story
   
 ```
@@ -57,7 +47,6 @@ THEN I am prompted to select an employee to update and their new role and this i
 - [Questions](#questions)
 
 ## Installation
-💾   
   
 `npm init`
   
@@ -76,14 +65,12 @@ THEN I am prompted to select an employee to update and their new role and this i
 `npm install validator`
   
 ## Usage
-💻   
   
+  ![DeWoody Employee Tracker](./assets/employee-tracker.gif)
 Run the following command at the root of your project and answer the prompted questions:
   
 `npm start`
 
-## Testing
--
 
 ## Contributing
 https://github.com/jpd61/employee-tracker

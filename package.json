@@ -1,0 +1,26 @@
+{
+  "name": "employee-tracker-mysql",
+  "version": "1.0.0",
+  "description": "🔍 A node.js application that uses user input from inquirer to populate an employee tracker database displaying members of a company.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samantha-Sokolis/employee-tracker-sql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Samantha-Sokolis/employee-tracker-sql/issues"
+  },
+  "homepage": "https://github.com/Samantha-Sokolis/employee-tracker-sql#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^9.1.4",
+    "mysql2": "^2.3.3"
+  }
+}
