@@ -56,23 +56,14 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 `npm install console-table`
 
-`npm install figlet`
 
-`npm install chalk`
-
-`npm install nodemon`
-
-`npm install validator`
-  
-## Usage
+## Images and Links
   
   ![DeWoody Employee Tracker](./assets/employee-tracker.gif)
 Run the following command at the root of your project and answer the prompted questions:
   
-`npm start`
 
 
-## Contributing
+## Resources
 https://github.com/jpd61/employee-tracker
-
-## Questions
+https://www.youtube.com/watch?v=3KO_BLuK9AQ

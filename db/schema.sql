@@ -2,32 +2,25 @@
 DROP DATABASE IF EXISTS company_db;
 CREATE DATABASE company_db;
 
-USE company;
-
+USE company_db;
 
 CREATE TABLE department (
-  id INT NOT NULL,
-  name VARCHAR(30),
-  PRIMARY KEY (id)
+  id INT UNIQUE,
+  department_name VARCHAR(30) NOT NULL,
+  PRIMARY KEY (id),
 );
 
 CREATE TABLE role (
-  id INT NOT NULL,
-  title VARCHAR(30),
-  SALARY DECIMAL,
-  department_id INT NOT NULL,
-  FOREIGN KEY (department_id)
-  REFERENCES department(id)
-  ON DELETE SET NULL
+  id INT PRIMARY KEY NOT NULL,
+  title VARCHAR(30) NOT NULL,
+  SALARY DECIMAL NOT NULL,
+  department_id INT,
 );
 
 CREATE TABLE employee (
-  id INT NOT NULL,
-  first_name VARCHAR(30),
-  last_name VARCHAR(30),
+  id INT PRIMARY KEY NOT NULL,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
   role_id INT NOT NULL,
-  manager_id INT NOT NULL,
-  FOREIGN KEY (manager_id)
-  REFERENCES role(id)
-  ON DELETE SET NULL
+  manager_id INT NULL,
 );

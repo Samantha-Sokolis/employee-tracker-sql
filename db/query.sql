@@ -1,3 +1,3 @@
 SELECT *
-FROM company
+FROM company_db
 JOIN department ON id.department = department.id;
