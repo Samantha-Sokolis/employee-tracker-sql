@@ -1,4 +1,4 @@
-# 12 SQL: Employee Tracker
+# Employee Tracker
    
 ## Description
 
@@ -35,16 +35,6 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
   
-## Table of Contents
-- [Description](#description)
-- [User Story](#user-story)
-- [Acceptance Criteria](#acceptance-criteria)
-- [Table of Contents](#table-of-contents)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [Questions](#questions)
 
 ## Installation
   
@@ -59,11 +49,8 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Images and Links
   
-  ![DeWoody Employee Tracker](./assets/employee-tracker.gif)
-Run the following command at the root of your project and answer the prompted questions:
-  
 
 
 ## Resources
+These resources were referred to as a guide to understand the steps and syntax of this project.
 https://github.com/jpd61/employee-tracker
-https://www.youtube.com/watch?v=3KO_BLuK9AQ
