@@ -1,10 +1,10 @@
 //dependencies required
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
-require("console.table");
+const cTable = require("console.table");
 
-//mysql connection
-const connection = mysql.createConnection({
+//mysql2 connection
+const connection = createConnection({
     host: 'localhost',
 
     // local host
@@ -37,8 +37,7 @@ connection.connect(function (err) {
 // function which prompts the user for what action they should take
 function firstPrompt() {
 
-  inquirer
-    .prompt({
+  prompt({
       type: "list",
       name: "task",
       message: "Would you like to do?",
@@ -140,8 +139,7 @@ function viewEmployeeByDepartment() {
 // User choose the department list, then employees pop up
 function promptDepartment(departmentChoices) {
 
-  inquirer
-    .prompt([
+  prompt([
       {
         type: "list",
         name: "departmentId",
@@ -197,8 +195,7 @@ function addEmployee() {
 
 function promptInsert(roleChoices) {
 
-  inquirer
-    .prompt([
+  prompt([
       {
         type: "input",
         name: "first_name",
@@ -265,8 +262,7 @@ function removeEmployees() {
 // User choose the employee list, then employee is deleted
 function promptDelete(deleteEmployeeChoices) {
 
-  inquirer
-    .prompt([
+  prompt([
       {
         type: "list",
         name: "employeeId",
@@ -346,8 +342,7 @@ function roleArray(employeeChoices) {
 
 function promptEmployeeRole(employeeChoices, roleChoices) {
 
-  inquirer
-    .prompt([
+  prompt([
       {
         type: "list",
         name: "employeeId",
@@ -411,8 +406,7 @@ function addRole() {
 
 function promptAddRole(departmentChoices) {
 
-  inquirer
-    .prompt([
+  prompt([
       {
         type: "input",
         name: "roleTitle",
