@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/Samantha-Sokolis/employee-tracker-sql#readme",
   "dependencies": {
-    "console-table": "^0.1.2",
     "console.table": "^0.10.0",
     "inquirer": "^9.1.4",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "node-fetch": "^2.6.1"
   }
 }
