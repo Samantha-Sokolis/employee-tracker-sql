@@ -1,14 +1,14 @@
 //dependencies required
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
-const cTable = require("console.table");
+require("console.table");
 
 //mysql2 connection
-const connection = createConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
 
     // local host
-    port: 3001,
+    port: 3306,
 
     // Your username
     user: 'root',
@@ -22,14 +22,9 @@ connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
     console.log(`
-    ╔═══╗─────╔╗──────────────╔═╗╔═╗
-    ║╔══╝─────║║──────────────║║╚╝║║
-    ║╚══╦╗╔╦══╣║╔══╦╗─╔╦══╦══╗║╔╗╔╗╠══╦═╗╔══╦══╦══╦═╗
-    ║╔══╣╚╝║╔╗║║║╔╗║║─║║║═╣║═╣║║║║║║╔╗║╔╗╣╔╗║╔╗║║═╣╔╝
-    ║╚══╣║║║╚╝║╚╣╚╝║╚═╝║║═╣║═╣║║║║║║╔╗║║║║╔╗║╚╝║║═╣║
-    ╚═══╩╩╩╣╔═╩═╩══╩═╗╔╩══╩══╝╚╝╚╝╚╩╝╚╩╝╚╩╝╚╩═╗╠══╩╝
-    ───────║║──────╔═╝║─────────────────────╔═╝║
-    ───────╚╝──────╚══╝─────────────────────╚══╝`)
+    ░█▀▀▀ █▀▄▀█ █▀▀█ █── █▀▀█ █──█ █▀▀ █▀▀ 　 ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀ █─█ █▀▀ █▀▀█ 
+    ░█▀▀▀ █─▀─█ █──█ █── █──█ █▄▄█ █▀▀ █▀▀ 　 ─░█── █▄▄▀ █▄▄█ █── █▀▄ █▀▀ █▄▄▀ 
+    ░█▄▄▄ ▀───▀ █▀▀▀ ▀▀▀ ▀▀▀▀ ▄▄▄█ ▀▀▀ ▀▀▀ 　 ─░█── ▀─▀▀ ▀──▀ ▀▀▀ ▀─▀ ▀▀▀ ▀─▀▀`)
     // runs the app
     firstPrompt();
 });
@@ -37,7 +32,8 @@ connection.connect(function (err) {
 // function which prompts the user for what action they should take
 function firstPrompt() {
 
-  prompt({
+  inquirer.
+    prompt({
       type: "list",
       name: "task",
       message: "Would you like to do?",
@@ -139,7 +135,7 @@ function viewEmployeeByDepartment() {
 // User choose the department list, then employees pop up
 function promptDepartment(departmentChoices) {
 
-  prompt([
+  inquirer.prompt([
       {
         type: "list",
         name: "departmentId",
@@ -262,7 +258,7 @@ function removeEmployees() {
 // User choose the employee list, then employee is deleted
 function promptDelete(deleteEmployeeChoices) {
 
-  prompt([
+  inquirer.prompt([
       {
         type: "list",
         name: "employeeId",
@@ -342,7 +338,7 @@ function roleArray(employeeChoices) {
 
 function promptEmployeeRole(employeeChoices, roleChoices) {
 
-  prompt([
+inquirer.prompt([
       {
         type: "list",
         name: "employeeId",
@@ -406,7 +402,7 @@ function addRole() {
 
 function promptAddRole(departmentChoices) {
 
-  prompt([
+  inquirer.prompt([
       {
         type: "input",
         name: "roleTitle",

@@ -36,21 +36,28 @@ THEN I am prompted to select an employee to update and their new role and this i
 ```
   
 
-## Installation
-  
+## Installation and Application
+   
 `npm init`
   
-`npm install inquirer`
+`npm install inquirer@8.2.4 (newer version causes error)`
 
 `npm install mysql2`
 
 `npm install console-table`
 
+`npm run test`
+
+`node server.js to run the application`
 
 ## Images and Links
+
+![Screenshot of application](/src/img/teamprofile_screenshot.png)
+
+GitHub: https://github.com/Samantha-Sokolis/employee-tracker-sql
+
+Walkthrough video: 
+
   
 
 
-## Resources
-These resources were referred to as a guide to understand the steps and syntax of this project.
-https://github.com/jpd61/employee-tracker
