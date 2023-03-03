@@ -1,28 +1,29 @@
-
+-- CREATE DATABASE AND TABLES ===========================
 DROP DATABASE IF EXISTS company_db;
-CREATE DATABASE company_db;
 
+CREATE DATABASE company_db;
 USE company_db;
 
-CREATE TABLE department (
-  id INT UNIQUE,
-  department_name VARCHAR(30) NOT NULL,
-  PRIMARY KEY (id)
+-- EMPLOYEES TABLE ======================================
+CREATE TABLE employees (
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  firstName VARCHAR (30),
+  lastName VARCHAR (30),
+  roleID INT,
+  managerID INT
 );
+
+-- DEPARTMENT TABLE ======================================
+CREATE TABLE department (
+  id INT(11) PRIMARY KEY,
+  depName VARCHAR (30)
+);
+
+-- ROLE TABLE ======================================
 
 CREATE TABLE role (
-  id INT PRIMARY KEY NOT NULL,
-  title VARCHAR(30) NOT NULL,
-  SALARY DECIMAL NOT NULL,
-  department_id INT
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE employee (
-  id INT PRIMARY KEY NOT NULL,
-  first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL,
-  role_id INT NOT NULL,
-  manager_id INT NULL
-  PRIMARY KEY (id)
+  id INT(11) AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR (30),
+  salary DECIMAL(9,2),
+  departmentID INT
 );
