@@ -113,7 +113,7 @@ function runCompanyDB() {
 // VIEW EMPLOYEES ________________________
 function viewAllEmployees() {
     
-    connection.query("SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, role.title AS Title, role.salary AS Salary, department.dep_name AS Department, CONCAT(e.firstName, ' ' ,e.lastName) AS Manager FROM employees INNER JOIN role on role.id = employees.role_id INNER JOIN department on department.id = role.department_id LEFT JOIN employees on employees.managerID = e.id;", 
+    connection.query("SELECT employee.firstName AS First_Name, employee.lastName AS Last_Name, roles.title AS Title, roles.salary AS Salary, department.dep_name AS Department, CONCAT(e.firstName, ' ' ,e.lastName) AS Manager FROM employee INNER JOIN roles on roles.id = employee.role_id INNER JOIN department on department.id = roles.department_id LEFT JOIN employee on employee.managerID = e.id;", 
     function(err, res) {
       if (err) throw err
       console.log ("");
@@ -126,7 +126,7 @@ function viewAllEmployees() {
 
 // VIEW DEPARTMENTS ______________________
 function viewAllDepts() {
-    connection.query("SELECT department.id AS ID, department.name AS Department FROM department",
+    connection.query("SELECT department.id AS ID, department.dep_name AS Department FROM department",
     function(err, res) {
       if (err) throw err
       console.log("")
@@ -152,7 +152,7 @@ function viewAllRoles() {
 
 // VIEW EMPLOYEES BY DEPARTMENT --------------
 function viewEmployeesByDept() {
-  connection.query("SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, department.name AS Department FROM employees JOIN role ON employees.role_id = role.id JOIN department ON role.departmentID = department.id ORDER BY department.id;", 
+  connection.query("SELECT employee.firstName AS First_Name, employee.lastName AS Last_Name, department.name AS Department FROM employee JOIN roles ON employee.role_id = roles.id JOIN department ON roles.departmentID = department.id ORDER BY department.id;", 
   function(err, res) {
     if (err) throw err
     console.log ("");
@@ -165,7 +165,7 @@ function viewEmployeesByDept() {
 
 // VIEW EMPLOYES BY ROLE ____________________
 function viewEmployeesByRole() {
-  connection.query("SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, roles.title AS Title FROM employees JOIN roles ON employees.role_id = role.id ORDER BY role.id", 
+  connection.query("SELECT employee.firstName AS First_Name, employee.lastName AS Last_Name, roles.title AS Title FROM employee JOIN roles ON employee.role_id = role.id ORDER BY role.id", 
   function(err, res) {
   if (err) throw err
   console.log ("");
@@ -191,7 +191,7 @@ function selectRole() {
 // MANAGER ARRAY SET UP FOR EMPLOYEE ADDITION ____________________
 let managersArr = [];
 function selectManager() {
-  connection.query("SELECT firstName, lastName FROM employees", function(err, res) {
+  connection.query("SELECT firstName, lastName FROM employee", function(err, res) {
     if (err) throw err
     for (var i = 0; i < res.length; i++) {
       managersArr.push(res[i].firstName);
@@ -242,7 +242,7 @@ function addEmployee() {
     ]).then(function (answers) {
       var role_id = selectRole().indexOf(answers.role) + 1
       var manager_id = selectManager().indexOf(answers.choice) + 1
-      connection.query("INSERT INTO employees SET ?", 
+      connection.query("INSERT INTO employee SET ?", 
       {
           firstName: answers.firstName,
           lastName: answers.lastName,
@@ -260,7 +260,7 @@ function addEmployee() {
  }
 // UPDATE EMPLOYEE ROLE _______________________
 function updateEmployeeRole() {
-    connection.query("SELECT employees.lastName, role.title FROM employees JOIN role ON employees.role_id = role.id;", 
+    connection.query("SELECT employee.lastName, roles.title FROM employee JOIN roles ON employee.role_id = role.id;", 
     (err, res) => {
             if (err) throw err;
  
@@ -285,7 +285,7 @@ function updateEmployeeRole() {
                 },
             ]).then(function (answers) {
                 var role_id = selectRole().indexOf(answers.role) + 1;
-                connection.query("UPDATE employees SET WHERE ?",
+                connection.query("UPDATE employee SET WHERE ?",
                     {
                         lastName: answers.lastName,
                         role_id: role_id

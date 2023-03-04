@@ -12,7 +12,7 @@ VALUES ("Campaign Manager", 110,000, 1),
        ("Accountant", 100,000, 2 ),
        ("Sales Manager", 100,000, 3);
 
-INSERT INTO employees (firstName, lastName, role_id, manager_id)
+INSERT INTO employee (firstName, lastName, role_id, manager_id)
 VALUES ('Sam', 'Smith', 1, 2),
        ('Sunny', 'Jones', 1, null),
        ('Christos', 'Sokolis', 1, 2),
