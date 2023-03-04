@@ -48,6 +48,11 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 `npm run test`
 
+`DATABASE`
+`log into mysql`
+`source db/schema.sql`
+`source db/seeds.sql THEN exit`
+
 `node server.js to run the application`
 
 ## Images and Links
@@ -56,7 +61,7 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 GitHub: https://github.com/Samantha-Sokolis/employee-tracker-sql
 
-Walkthrough video: 
+Walkthrough video: https://watch.screencastify.com/v/1GazWCkjYtJi0VWHyUvC
 
   
 
