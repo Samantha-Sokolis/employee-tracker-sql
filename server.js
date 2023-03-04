@@ -113,73 +113,73 @@ function runCompanyDB() {
 // VIEW EMPLOYEES ________________________
 function viewAllEmployees() {
     
-    connection.query("SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, role.title AS Title, role.salary AS Salary, department.name AS Department, CONCAT(e.firstName, ' ' ,e.lastName) AS Manager FROM employees INNER JOIN role on role.id = employees.roleID INNER JOIN department on department.id = role.departmentID LEFT JOIN employees e on employees.managerID = e.id;", 
+    connection.query("SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, role.title AS Title, role.salary AS Salary, department.dep_name AS Department, CONCAT(e.firstName, ' ' ,e.lastName) AS Manager FROM employees INNER JOIN role on role.id = employees.role_id INNER JOIN department on department.id = role.department_id LEFT JOIN employees on employees.managerID = e.id;", 
     function(err, res) {
       if (err) throw err
       console.log ("");
       console.log("*** EMPLOYEES LIST ***");
       console.log ("");
       console.table(res)
-      runEmployeeDB()
+      runCompanyDB();
   })
 }
 
 // VIEW DEPARTMENTS ______________________
 function viewAllDepts() {
-    connection.query("SELECT department.id AS ID, department.depName AS Department FROM department",
+    connection.query("SELECT department.id AS ID, department.name AS Department FROM department",
     function(err, res) {
       if (err) throw err
       console.log("")
       console.log("*** DEPARTMENT LIST ***")
       console.log("")
       console.table(res)
-      runEmployeeDB()
+      runCompanyDB();
   })
 }
 
 // VIEW ROLES ______________________
 function viewAllRoles() {
-    connection.query("SELECT role.id AS Dept_ID, role.title AS Title FROM role",
+    connection.query("SELECT roles.id AS Dept_ID, roles.title AS Title FROM roles",
     function(err, res) {
       if (err) throw err
       console.log("")
       console.log("*** ROLE LIST ***")
       console.log("")
       console.table(res)
-      runEmployeeDB()
+      runCompanyDB()
   })
 }
 
 // VIEW EMPLOYEES BY DEPARTMENT --------------
 function viewEmployeesByDept() {
-  connection.query("SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, department.name AS Department FROM employees JOIN role ON employees.roleID = role.id JOIN department ON role.departmentID = department.id ORDER BY department.id;", 
+  connection.query("SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, department.name AS Department FROM employees JOIN role ON employees.role_id = role.id JOIN department ON role.departmentID = department.id ORDER BY department.id;", 
   function(err, res) {
     if (err) throw err
     console.log ("");
     console.log("*** EMPLOYEES LIST BY DEPARTMENT ***")
     console.log ("");
     console.table(res)
-    runEmployeeDB()
+    runCompanyDB();
   })
 }
 
 // VIEW EMPLOYES BY ROLE ____________________
 function viewEmployeesByRole() {
-  connection.query("SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, role.title AS Title FROM employees JOIN role ON employees.roleID = role.id ORDER BY role.id", 
+  connection.query("SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, roles.title AS Title FROM employees JOIN roles ON employees.role_id = role.id ORDER BY role.id", 
   function(err, res) {
   if (err) throw err
   console.log ("");
   console.log("*** EMPLOYEES LIST BY ROLE ***")
   console.log ("");
   console.table(res)
-  runEmployeeDB()
+  runCompanyDB();
   })
 }
 
 // ROLE ARRAY SET UP FOR EMPLOYEE ADDITION _____________________
 let roleArr = [];                                            
 function selectRole() {
-  connection.query("SELECT * FROM role", function(err, res) {
+  connection.query("SELECT * FROM roles", function(err, res) {
     if (err) throw err
     for (var i = 0; i < res.length; i++) {
       roleArr.push(res[i].title);
@@ -227,7 +227,7 @@ function addEmployee() {
           message: "Last Name: "
         },
         {
-          name: "role",
+          name: "roles",
           type: "list",
           message: "What is the new employee's title? ",
           choices: selectRole()
@@ -240,27 +240,27 @@ function addEmployee() {
         }
 
     ]).then(function (answers) {
-      var roleId = selectRole().indexOf(answers.role) + 1
-      var managerId = selectManager().indexOf(answers.choice) + 1
+      var role_id = selectRole().indexOf(answers.role) + 1
+      var manager_id = selectManager().indexOf(answers.choice) + 1
       connection.query("INSERT INTO employees SET ?", 
       {
           firstName: answers.firstName,
           lastName: answers.lastName,
-          managerID: managerId,
-          roleID: roleId
+          managerID: manager_id,
+          role_id: role_id
           
       }, 
       function(err){
           if (err) throw err
           console.table(answers)
-          runEmployeeDB()
+          runCompanyDB()
       })
 
   })
  }
 // UPDATE EMPLOYEE ROLE _______________________
 function updateEmployeeRole() {
-    connection.query("SELECT employees.lastName, role.title FROM employees JOIN role ON employees.roleID = role.id;", 
+    connection.query("SELECT employees.lastName, role.title FROM employees JOIN role ON employees.role_id = role.id;", 
     (err, res) => {
             if (err) throw err;
  
@@ -284,18 +284,18 @@ function updateEmployeeRole() {
                     choices: selectRole()
                 },
             ]).then(function (answers) {
-                var roleId = selectRole().indexOf(answers.role) + 1;
+                var role_id = selectRole().indexOf(answers.role) + 1;
                 connection.query("UPDATE employees SET WHERE ?",
                     {
                         lastName: answers.lastName,
-                        roleID: roleId
+                        role_id: role_id
                     },
         
                     function (err) {
                         if (err)
                             throw err;
                         console.table(answers);
-                        runEmployeeDB();
+                        runCompanyDB();
                     });
             });
         });
@@ -325,7 +325,7 @@ function addDept() {
             function(err) {
                 if (err) throw err
                 console.table(res);
-                runEmployeeDB();
+                runCompanyDB();
             }
         )
     })
@@ -358,12 +358,12 @@ function addDept() {
               {
                 title: answers.title,
                 salary: answers.salary,
-                departmentID: deptId
+                department_id: department_id
               },
               function(err) {
                   if (err) throw err
                   console.table(answers);
-                  runEmployeeDB();
+                  runCompanyDB();
               }
           )     
       });
