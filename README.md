@@ -52,7 +52,7 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Images and Links
 
-![Screenshot of application](/src/img/teamprofile_screenshot.png)
+![Screenshot of application](./Assets/employeetracker_screenshot.png)
 
 GitHub: https://github.com/Samantha-Sokolis/employee-tracker-sql
 
