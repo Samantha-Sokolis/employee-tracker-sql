@@ -319,10 +319,10 @@ function addDept() {
     ]).then(function(answers) {
         connection.query("INSERT INTO department SET ? ",
             {
-              name: answers.name,
+              dep_name: answers.name,
               id: answers.id
             },
-            function(err) {
+            function(err, res) {
                 if (err) throw err
                 console.table(res);
                 runCompanyDB();
